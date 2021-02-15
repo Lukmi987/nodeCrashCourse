@@ -1,8 +1,20 @@
 const http = require('http');
 const fs = require('fs');
+const _ = require('lodash');
 
 //second arg is response header
 const server = http.createServer((req, res) => {
+    //loadash
+    const num = _.random(0, 20);
+    console.log(num);
+
+    const greet = _.once(() => {
+        console.log('hello');
+    });
+
+    greet();
+    greet();
+
     //when we make a request this callback fires
     console.log('request made',req.url, req.method);
 
@@ -20,7 +32,7 @@ const server = http.createServer((req, res) => {
             path += 'about.html'
             res.statusCode = 200;
             break;
-        case '/about-me':
+        case '/about-mee':
             res.statusCode = 301;
             //redirect
             res.setHeader('Location','/about');
