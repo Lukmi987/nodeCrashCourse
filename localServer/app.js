@@ -1,10 +1,31 @@
 const express = require('express')// returns a func
+const morgan = require('morgan');
 
 //express app
 const app = express();
 
 //listen for requests and returns an instance of the server if we need it
 app.listen(3000);
+
+//middleware & static files
+app.use(express.static('public'));
+
+app.use(morgan('dev'));
+
+// our own middleware
+// app.use((req, res, next) => {
+//     console.log('new request made!!!!!!1');
+//     console.log('host:', req.hostname);
+//     console.log('path', req.path);
+//     console.log('host:', req.hostname);
+//     console.log('path', req.method);
+//     next();
+// });
+
+// app.use((req, res, next) => {
+//     console.log('in the next middleware !!!!!!');
+//     next();
+// });
 
 // if express finds the match the get method the code below is not executed
 app.get('/', (req, res) => {
